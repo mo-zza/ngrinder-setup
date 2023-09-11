@@ -1,0 +1,8 @@
+### Node ###
+data/controller/**
+
+### Environment ###
+.env
+
+### IDE ###
+.idea

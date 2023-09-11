@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  controller:
+    container_name: ngrinder-controller
+    image: ngrinder/controller:latest
+    environment:
+      - TZ=${TZ}
+    platform: linux/amd64
+    ports:
+      - "${PORT}:80"
+      - "${AGENT_PORT}:16001"
+      - "12000-12009:12000-12009"
+    volumes:
+      - ./data/controller:/opt/ngrinder-controller
+  agent:
+    container_name: ngrinder-agent
+    image: ngrinder/agent:latest
+    links:
+      - controller
+    environment:
+      - TZ=${TZ}
+    platform: linux/amd64
